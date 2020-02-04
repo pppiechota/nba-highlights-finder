@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: piotr
-  Date: 04.02.2020
-  Time: 23:12
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Schedule</title>
 </head>
 <body>
-$END$
+<h3>Last night's schedule</h3>
+<c:forEach items="${schedule}" var="game">
+    ${game.homeTeam} vs ${game.visitorTeam} (${game.date}) <br/>
+</c:forEach>
 </body>
 </html>

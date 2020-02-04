@@ -2,10 +2,7 @@ package pl.piotrpiechota.nbahighlightsfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,7 +20,7 @@ public class ScheduledGameDto {
     @SuppressWarnings("unchecked")
     @JsonProperty("data")
     private void unpackNestedData(Map<String, Object>[] data) {
-        if (data.length!=0){
+        if (data.length != 0) {
             this.date = (String) data[0].get("date");
             Map<String, Object> homeTeamMap = (Map<String, Object>) data[0].get("home_team");
             this.homeTeam = (String) homeTeamMap.get("name");

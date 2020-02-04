@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import pl.piotrpiechota.nbahighlightsfinder.dto.ScheduleDto;
 import pl.piotrpiechota.nbahighlightsfinder.dto.ScheduledGameDto;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
@@ -13,6 +14,7 @@ import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -21,6 +23,25 @@ public class GameController {
 
     public GameController(YoutubeService youtubeService) {
         this.youtubeService = youtubeService;
+    }
+
+    @RequestMapping("/schedule")
+    public String getSchedule(Model model) {
+        LocalDate lastDay = LocalDate.now().minusDays(1);
+
+        String url = "http://www.balldontlie.io/api/v1/games?start_date=" + lastDay + "&end_date=" + lastDay;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ScheduleDto scheduleDto = restTemplate.getForEntity(url, ScheduleDto.class).getBody();
+
+        if (!scheduleDto.wasPlayed()) {
+            return "game";
+        }
+
+        List<Game> scheduledGames = scheduleDto.getGames();
+
+        model.addAttribute("schedule", scheduledGames);
+        return "gamesList";
     }
 
     @RequestMapping("/get-games/{teamID}")
@@ -34,7 +55,7 @@ public class GameController {
         ScheduledGameDto scheduledGame = restTemplate.getForEntity(url, ScheduledGameDto.class).getBody();
 
         Game game = new Game();
-        if (!scheduledGame.wasPlayed()){
+        if (!scheduledGame.wasPlayed()) {
 //            game.setPlayed(false);
             return "game";
         }

@@ -11,7 +11,8 @@ public class ScheduledGameDto {
     private String date;
     private String homeTeam;
     private String visitorTeam;
-    private Integer totalCount;
+//    private Integer totalCount;
+    private boolean played;
 
 //    private String status;          // (7:30pm ET) minus 6 do naszego CET
 //    private String homeTeamScore;
@@ -29,7 +30,20 @@ public class ScheduledGameDto {
 
     @JsonProperty("meta")
     private void unpackNestedMeta(Map<String, Integer> meta) {
-        this.totalCount = meta.get("total_count");
+        Integer totalCount = meta.get("total_count");
+        if (totalCount == 0){
+            this.played = false;
+        } else {
+            this.played = true;
+        }
+    }
+
+    public boolean isPlayed() {
+        return played;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
     }
 
     public String getDate() {
@@ -40,13 +54,13 @@ public class ScheduledGameDto {
         this.date = date;
     }
 
-    public Integer getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
-    }
+//    public Integer getTotalCount() {
+//        return totalCount;
+//    }
+//
+//    public void setTotalCount(Integer totalCount) {
+//        this.totalCount = totalCount;
+//    }
 
     public String getHomeTeam() {
         return homeTeam;

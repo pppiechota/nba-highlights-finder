@@ -7,6 +7,15 @@ public class Game {
     private String homeTeam;
     private String visitorTeam;
     private LocalDate date;
+    private boolean played;
+
+    public boolean isPlayed() {
+        return played;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
+    }
 
     public LocalDate getDate() {
         return date;

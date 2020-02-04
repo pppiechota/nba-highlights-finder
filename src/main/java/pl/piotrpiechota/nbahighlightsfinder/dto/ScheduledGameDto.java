@@ -11,8 +11,8 @@ public class ScheduledGameDto {
     private String date;
     private String homeTeam;
     private String visitorTeam;
-//    private Integer totalCount;
     private boolean played;
+    private Integer totalCount;
 
 //    private String status;          // (7:30pm ET) minus 6 do naszego CET
 //    private String homeTeamScore;
@@ -21,11 +21,13 @@ public class ScheduledGameDto {
     @SuppressWarnings("unchecked")
     @JsonProperty("data")
     private void unpackNestedData(Map<String, Object>[] data) {
-        this.date = (String) data[0].get("date");
-        Map<String, Object> homeTeamMap = (Map<String, Object>) data[0].get("home_team");
-        this.homeTeam = (String) homeTeamMap.get("name");
-        Map<String, Object> visitorTeamMap = (Map<String, Object>) data[0].get("visitor_team");
-        this.visitorTeam = (String) visitorTeamMap.get("name");
+        if (data.length!=0){
+            this.date = (String) data[0].get("date");
+            Map<String, Object> homeTeamMap = (Map<String, Object>) data[0].get("home_team");
+            this.homeTeam = (String) homeTeamMap.get("name");
+            Map<String, Object> visitorTeamMap = (Map<String, Object>) data[0].get("visitor_team");
+            this.visitorTeam = (String) visitorTeamMap.get("name");
+        }
     }
 
     @JsonProperty("meta")
@@ -53,14 +55,6 @@ public class ScheduledGameDto {
     public void setDate(String date) {
         this.date = date;
     }
-
-//    public Integer getTotalCount() {
-//        return totalCount;
-//    }
-//
-//    public void setTotalCount(Integer totalCount) {
-//        this.totalCount = totalCount;
-//    }
 
     public String getHomeTeam() {
         return homeTeam;

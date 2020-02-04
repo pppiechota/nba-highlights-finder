@@ -90,6 +90,11 @@
             <h2 class="mt-4">Game:</h2>
             <p>${game.homeTeam} - ${game.visitorTeam}</p>
             <p>${game.date}</p>
+            <p>${game.played}</p>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${video}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         </div>
     </div>
     <!-- /#page-content-wrapper -->

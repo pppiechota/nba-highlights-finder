@@ -2,7 +2,10 @@ package pl.piotrpiechota.nbahighlightsfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,7 +15,6 @@ public class ScheduledGameDto {
     private String homeTeam;
     private String visitorTeam;
     private boolean played;
-    private Integer totalCount;
 
 //    private String status;          // (7:30pm ET) minus 6 do naszego CET
 //    private String homeTeamScore;
@@ -33,14 +35,10 @@ public class ScheduledGameDto {
     @JsonProperty("meta")
     private void unpackNestedMeta(Map<String, Integer> meta) {
         Integer totalCount = meta.get("total_count");
-        if (totalCount == 0){
-            this.played = false;
-        } else {
-            this.played = true;
-        }
+        this.played = totalCount != 0;
     }
 
-    public boolean isPlayed() {
+    public boolean wasPlayed() {
         return played;
     }
 

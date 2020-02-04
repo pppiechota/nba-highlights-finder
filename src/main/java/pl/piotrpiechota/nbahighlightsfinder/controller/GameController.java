@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import pl.piotrpiechota.nbahighlightsfinder.dto.ScheduledGameDto;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
-import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeSearch;
+import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +16,12 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class GameController {
+
+    private final YoutubeService youtubeService;
+
+    public GameController(YoutubeService youtubeService) {
+        this.youtubeService = youtubeService;
+    }
 
     @RequestMapping("/get-games/{teamID}")
     public String getGames(Model model, @PathVariable Integer teamID) {
@@ -28,10 +34,8 @@ public class GameController {
         ScheduledGameDto scheduledGame = restTemplate.getForEntity(url, ScheduledGameDto.class).getBody();
 
         Game game = new Game();
-
-        if (!scheduledGame.isPlayed()) {
-            game.setPlayed(false);
-            model.addAttribute("game", game);
+        if (!scheduledGame.wasPlayed()){
+//            game.setPlayed(false);
             return "game";
         }
 
@@ -40,28 +44,28 @@ public class GameController {
                 .parse(dateFromApi, DateTimeFormatter.ISO_DATE_TIME)
                 .toLocalDate();
 
-        game.setPlayed(true);
+//        game.setPlayed(true);
         game.setDate(convertedDate);
         game.setHomeTeam(scheduledGame.getHomeTeam());
         game.setVisitorTeam(scheduledGame.getVisitorTeam());
 
-        String videoId = YoutubeSearch.executeSearch(game);
+        String videoId = youtubeService.executeSearch(game);
 
         model.addAttribute("video", videoId);
         model.addAttribute("game", game);
         return "game";
     }
 
-    @RequestMapping("/video")
-    @ResponseBody
-    public String showVideoId() {
-        Game game = new Game();
-        game.setHomeTeam("Atlanta");
-        game.setVisitorTeam("Boston");
-        game.setDate(LocalDate.now());
-
-        String response = YoutubeSearch.executeSearch(game);
-
-        return response;
-    }
+//    @RequestMapping("/video")
+//    @ResponseBody
+//    public String showVideoId() {
+//        Game game = new Game();
+//        game.setHomeTeam("Atlanta");
+//        game.setVisitorTeam("Boston");
+//        game.setDate(LocalDate.now());
+//
+//        String response = YoutubeService.executeSearch(game);
+//
+//        return response;
+//    }
 }

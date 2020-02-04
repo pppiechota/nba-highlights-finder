@@ -4,10 +4,7 @@
 <head>
     <title>nba highlights</title>
 
-    <!-- Bootstrap core CSS -->
     <link href='<spring:url value="/vendor/bootstrap/css/bootstrap.min.css"/>' rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
     <link href='<spring:url value="/css/simple-sidebar.css"/>' rel="stylesheet" />
 </head>
 <body>
@@ -16,7 +13,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">nba spoilerfree highlights<br/> for hardworking<br/> polish people</div>
+        <div class="sidebar-heading">nba spoilerfree<br/> highlights<br/> for hardworking<br/> polish people</div>
         <div class="list-group list-group-flush">
             <a href='<spring:url value="/get-games/1"/>' class="list-group-item list-group-item-action bg-light">ATL</a>
             <a href='<spring:url value="/get-games/2"/>' class="list-group-item list-group-item-action bg-light">BOS</a>
@@ -71,24 +68,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Login</a>
                     </li>
-<%--                    <li class="nav-item dropdown">--%>
-<%--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" --%>
-<%--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-<%--                            Dropdown--%>
-<%--                        </a>--%>
-<%--                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--%>
-<%--                            <a class="dropdown-item" href="#">Action</a>--%>
-<%--                            <a class="dropdown-item" href="#">Another action</a>--%>
-<%--                            <div class="dropdown-divider"></div>--%>
-<%--                            <a class="dropdown-item" href="#">Something else here</a>--%>
-<%--                        </div>--%>
-<%--                    </li>--%>
                 </ul>
             </div>
         </nav>
 
         <div class="container-fluid">
-            <h2 class="mt-4">Hello</h2>
+            <h2 class="mt-4">Welcome</h2>
             <p></p>
         </div>
     </div>

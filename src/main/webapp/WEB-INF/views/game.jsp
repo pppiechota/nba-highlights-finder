@@ -73,8 +73,7 @@
         </nav>
 
         <div class="container-fluid">
-            <h2 class="mt-4">Game:</h2>
-            <p>${game.homeTeam} - ${game.visitorTeam}</p>
+            <h2 class="mt-4">${game.homeTeam} - ${game.visitorTeam}</h2>
             <p>${game.date}</p>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/${video}" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

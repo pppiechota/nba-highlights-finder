@@ -4,19 +4,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.SessionScope;
 import pl.piotrpiechota.nbahighlightsfinder.dto.ScheduleDto;
 import pl.piotrpiechota.nbahighlightsfinder.dto.ScheduledGameDto;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionScope
 public class GameController {
 
     private final YoutubeService youtubeService;
@@ -26,7 +31,7 @@ public class GameController {
     }
 
     @RequestMapping("/schedule")
-    public String getSchedule(Model model) {
+    public String getSchedule(HttpServletRequest request) {
         LocalDate lastDay = LocalDate.now().minusDays(1);
 
         String url = "http://www.balldontlie.io/api/v1/games?start_date=" + lastDay + "&end_date=" + lastDay;
@@ -39,9 +44,24 @@ public class GameController {
         }
 
         List<Game> scheduledGames = scheduleDto.getGames();
+        request.getSession().setAttribute("schedule",scheduledGames);
 
-        model.addAttribute("schedule", scheduledGames);
         return "gamesList";
+    }
+
+    @RequestMapping("/schedule/game")
+    public String getGame(@RequestParam Integer gameId, HttpSession session, Model model){
+        List<Game> schedule;
+        if (session.getAttribute("schedule")==null){
+            schedule = new ArrayList<>();
+        } else {
+            schedule = (List<Game>) session.getAttribute("schedule");
+        }
+
+        Game clickedGame = schedule.get(gameId);
+        String videoId = youtubeService.executeSearch(clickedGame);
+        model.addAttribute("video", videoId);
+        return "game";
     }
 
     @RequestMapping("/get-games/{teamID}")
@@ -76,17 +96,4 @@ public class GameController {
         model.addAttribute("game", game);
         return "game";
     }
-
-//    @RequestMapping("/video")
-//    @ResponseBody
-//    public String showVideoId() {
-//        Game game = new Game();
-//        game.setHomeTeam("Atlanta");
-//        game.setVisitorTeam("Boston");
-//        game.setDate(LocalDate.now());
-//
-//        String response = YoutubeService.executeSearch(game);
-//
-//        return response;
-//    }
 }

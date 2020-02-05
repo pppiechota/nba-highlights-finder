@@ -51,14 +51,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2 class="mt-4">${game.homeTeam} - ${game.visitorTeam}</h2>
-            <p>${game.date}</p>
-            <iframe width="854" height="480" src="https://www.youtube.com/embed/${video}" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h1 class="mt-5">Show me highlights</h1>
+            <p class="lead">Click on the game from above list</p>
         </div>
     </div>
 </div>
-
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.slim.min.js"></script>

@@ -61,6 +61,7 @@ public class GameController {
         Game clickedGame = schedule.get(gameId);
         String videoId = youtubeService.executeSearch(clickedGame);
         model.addAttribute("video", videoId);
+        model.addAttribute("game", clickedGame);
         return "game";
     }
 

@@ -17,8 +17,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Are you a hard-working, night-sleeping polish NBA fan,
-                looking for spoiler-free highlights of your favourite's team recent games?</h1>
+            <div class="about">
+                <h1 class="mt-5">Are you a hard-working, gently-sleeping at night polish NBA fan,
+                    looking for spoiler-free highlights of your favourite's team recent games?</h1>
+            </div>
+            <p class="lead">.</p>
+            <p class="lead">.</p>
+            <p class="lead">.</p>
             <p class="lead">This site is for you.</p>
         </div>
     </div>

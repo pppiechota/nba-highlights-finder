@@ -48,6 +48,8 @@ public class BallApiService {
                 .getBody();
 
         assert scheduleDto != null : "Returned JSON is null";
+
+        scheduleDto.getGames().sort((g1, g2)-> g2.getDate().compareTo(g1.getDate()));
         return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
     }
 }

@@ -16,7 +16,7 @@ public class Game {
         this.date = date;
     }
 
-    public String getHomeTeam() {
+        public String getHomeTeam() {
         return homeTeam;
     }
 

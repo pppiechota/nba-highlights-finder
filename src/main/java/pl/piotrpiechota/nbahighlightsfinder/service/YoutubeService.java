@@ -34,9 +34,7 @@ public class YoutubeService {
             }).setApplicationName("nba-highlights-finder").build();
 
             String apiKey = getProperties().getProperty("youtube.apikey");
-            String queryTerm = game.getHomeTeam().getName() + " " + game.getVisitorTeam().getName()/*+" "+game.getDate().toString()*/;
-
-            System.out.println("1 "+queryTerm);
+            String queryTerm = game.getHomeTeam() + " " + game.getVisitorTeam()/*+" "+game.getDate().toString()*/;
 
             YouTube.Search.List search = youtube.search()
                     .list("id,snippet")
@@ -45,29 +43,21 @@ public class YoutubeService {
                     .setType("video")
                     .setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
-            System.out.println("2 "+search);
             List<SearchResult> searchResultList = search
                     .execute()
                     .getItems();
 
             for (SearchResult searchResult : searchResultList) {
-                System.out.println("."+searchResult);
-            }
-            System.out.println("3 "+searchResultList);
-            for (SearchResult searchResult : searchResultList) {
                 String videoId = searchResult.getId().getVideoId();
-                System.out.println("4 "+videoId);
                 YouTube.Videos.List video = youtube.videos()
                         .list("contentDetails,snippet");
-                System.out.println("5 "+video);
                 VideoListResponse videoResponse = video.setKey(apiKey)
                         .setId(videoId)
                         .execute();
-                System.out.println("6 "+videoResponse);
+
                 Duration duration = Duration.parse(videoResponse.getItems().get(0).getContentDetails().getDuration());
                 DateTime dateG = videoResponse.getItems().get(0).getSnippet().getPublishedAt();
-                System.out.println(dateG.toString());
-                System.out.println(dateIsRight(dateG,game));
+
                 if (timeIsRight(duration) && dateIsRight(dateG,game)){
                     requestedVideoId = videoId;
                     break;

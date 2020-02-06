@@ -106,15 +106,15 @@ public class HomeController {
         return "about";
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public String test(){
-        Game game = new Game();
-        game.setHomeTeam(teamRepo.findFirstByName("Pistons"));
-        game.setVisitorTeam(teamRepo.findFirstByName("Suns"));
-        game.setDate(LocalDate.of(2020,02,05));
-        String videoId = youtubeService.executeSearch(game);
-        System.out.println(videoId);
-        return videoId;
-    }
+//    @RequestMapping("/test")
+//    @ResponseBody
+//    public String test(){
+//        Game game = new Game();
+//        game.setHomeTeam(teamRepo.findFirstByName("Pistons"));
+//        game.setVisitorTeam(teamRepo.findFirstByName("Suns"));
+//        game.setDate(LocalDate.of(2020,02,05));
+//        String videoId = youtubeService.executeSearch(game);
+//        System.out.println(videoId);
+//        return videoId;
+//    }
 }

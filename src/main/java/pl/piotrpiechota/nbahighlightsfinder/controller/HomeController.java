@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Team;
@@ -16,6 +17,7 @@ import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,9 +45,7 @@ public class HomeController {
         LocalDate lastDay = LocalDate.now().minusDays(1);
 
         List<Game> scheduledGames = ballApiService.getLastNightsGames();
-        for (Game scheduledGame : scheduledGames) {
-            System.out.println(scheduledGame.getHomeTeam());
-        }
+
         request.getSession().setAttribute("schedule", scheduledGames);
         model.addAttribute("date", lastDay);
         return "home";
@@ -62,7 +62,7 @@ public class HomeController {
 
         Game clickedGame = schedule.get(id);
         String videoId = youtubeService.executeSearch(clickedGame);
-        System.out.println(videoId);
+
         model.addAttribute("video", videoId);
         model.addAttribute("game", clickedGame);
         return "game";
@@ -104,5 +104,17 @@ public class HomeController {
     @RequestMapping("/about")
     public String getAbout() {
         return "about";
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test(){
+        Game game = new Game();
+        game.setHomeTeam(teamRepo.findFirstByName("Pistons"));
+        game.setVisitorTeam(teamRepo.findFirstByName("Suns"));
+        game.setDate(LocalDate.of(2020,02,05));
+        String videoId = youtubeService.executeSearch(game);
+        System.out.println(videoId);
+        return videoId;
     }
 }

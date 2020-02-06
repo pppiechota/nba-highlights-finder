@@ -1,5 +1,11 @@
+div.player {
+    margin: 20px;
+    padding: 40px;
+    background-color: #0c5460;
+}
+
 div.scrollmenu {
-    background-color: #333;
+    background-color: #1d428a;
     overflow: auto;
     white-space: nowrap;
 }
@@ -15,3 +21,4 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
     background-color: #777;
 }
+

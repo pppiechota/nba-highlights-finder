@@ -44,7 +44,6 @@ public class YoutubeService {
                     .execute()
                     .getItems();
 
-
             for (SearchResult searchResult : searchResultList) {
                 String videoId = searchResult.getId().getVideoId();
                 YouTube.Videos.List video = youtube.videos()
@@ -62,6 +61,7 @@ public class YoutubeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return requestedVideoId;
     }
 

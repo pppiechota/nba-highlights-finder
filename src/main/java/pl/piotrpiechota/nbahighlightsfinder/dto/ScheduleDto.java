@@ -24,10 +24,13 @@ public class ScheduleDto {
             tempGame.setDate(LocalDateTime
                     .parse((String) gameData.get("date"), DateTimeFormatter.ISO_DATE_TIME)
                     .toLocalDate());
+
             Map<String, Object> homeTeamMap = (Map<String, Object>) gameData.get("home_team");
             tempGame.setHomeTeam((String) homeTeamMap.get("name"));
+
             Map<String, Object> visitorTeamMap = (Map<String, Object>) gameData.get("visitor_team");
             tempGame.setVisitorTeam((String) visitorTeamMap.get("name"));
+
             games.add(tempGame);
         }
     }

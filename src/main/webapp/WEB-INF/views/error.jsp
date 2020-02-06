@@ -12,30 +12,11 @@
 </head>
 <body>
 <jsp:include page="navMenu.jsp"/>
-<section id="gamesList">
-    <div class="navbar navbar-expand-lg navbar-dark static-top">
-        <div class="container">
-            <div class="scrollmenu">
-                <c:forEach items="${schedule}" var="game" varStatus="gamelist">
-                    <a href='<spring:url value="/game?id=${gamelist.index}"/>'>
-                            ${game.homeTeam} vs ${game.visitorTeam}
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2 class="mt-4">${game.homeTeam} - ${game.visitorTeam}</h2>
-            <p>${game.date}</p>
-            <div class="player">
-                <iframe width="854" height="480" src="https://www.youtube.com/embed/${video}" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+            <h1 class="mt-5">Sorry, something went wrong...</h1>
         </div>
     </div>
 </div>

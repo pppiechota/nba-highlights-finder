@@ -17,25 +17,23 @@
         <div class="container">
             <div class="scrollmenu">
                 <c:forEach items="${schedule}" var="game" varStatus="gamelist">
-                    <a href='<spring:url value="/game?id=${gamelist.index}"/>'>
-                            ${game.homeTeam} vs ${game.visitorTeam}
-                    </a>
+                    <a href='<spring:url value="/game?id=${gamelist.index}"/>'>${game.homeTeam}
+                        vs ${game.visitorTeam}</a>
                 </c:forEach>
             </div>
         </div>
     </div>
 </section>
-
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2 class="mt-4">${game.homeTeam} - ${game.visitorTeam}</h2>
-            <p>${game.date}</p>
-            <div class="player">
-                <iframe width="854" height="480" src="https://www.youtube.com/embed/${video}" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+            <h1 class="mt-5">Pick a team:</h1>
+            <ul style="list-style-type:none;">
+                <c:forEach items="${teams}" var="team">
+                    <li><a href='<spring:url value="/teams/${team.id}"/>'>${team.fullName}</a></li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </div>

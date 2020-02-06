@@ -17,14 +17,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2 class="mt-4">${game.homeTeam} - ${game.visitorTeam}</h2>
-            <p>${game.date}</p>
-            <div class="player">
-                <div class="videoWrapper">
-                    <iframe src="https://www.youtube.com/embed/${video}" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
+            <h1 class="mt-5">Are you a hard-working, night-sleeping polish NBA fan,
+                looking for spoiler-free highlights of your favourite's team recent games?</h1>
+            <p class="lead">This site is for you.</p>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@
 </head>
 <body>
 <section id="gamesList">
-    <div class="navbar navbar-expand-lg navbar-dark static-top">
+    <div class="static-top">
         <div class="container">
             <div class="scrollmenu">
                 <c:forEach items="${schedule}" var="game" varStatus="gamelist">

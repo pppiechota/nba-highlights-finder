@@ -69,7 +69,7 @@ public class HomeController {
     }
 
     @RequestMapping("/teams")
-    public String getTeamList(Model model) {
+    public String getTeamList() {
         return "teams";
     }
 
@@ -99,5 +99,10 @@ public class HomeController {
         model.addAttribute("video", videoId);
         model.addAttribute("game", clickedGame);
         return "game";
+    }
+
+    @RequestMapping("/about")
+    public String getAbout() {
+        return "about";
     }
 }

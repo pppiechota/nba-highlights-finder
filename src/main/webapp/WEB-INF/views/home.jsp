@@ -14,13 +14,15 @@
 <jsp:include page="navMenu.jsp"/>
 <jsp:include page="resultsScrollbar.jsp"/>
 
-
-<!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="mt-5">Highlights from ${date}</h1>
             <p class="lead">Click on the game from above list</p>
+            <div id="nbalogo">
+                <img src="/img/nbalogo.png">
+            </div>
+            <p class="welcome">I<span style="color: red">LOVE</span>THIS<span style="color: darkblue">GAME</span>!</p>
         </div>
     </div>
 </div>

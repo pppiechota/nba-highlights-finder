@@ -12,18 +12,7 @@
 </head>
 <body>
 <jsp:include page="navMenu.jsp"/>
-<section id="gamesList">
-    <div class="navbar navbar-expand-lg navbar-dark static-top">
-        <div class="container">
-            <div class="scrollmenu">
-                <c:forEach items="${schedule}" var="game" varStatus="gamelist">
-                    <a href='<spring:url value="/game?id=${gamelist.index}"/>'>${game.homeTeam}
-                        vs ${game.visitorTeam}</a>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-</section>
+<jsp:include page="resultsScrollbar.jsp"/>
 <!-- Page Content -->
 <div class="container">
     <div class="row">

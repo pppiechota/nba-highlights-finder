@@ -10,6 +10,7 @@
     <div class="static-top">
         <div class="container">
             <div class="scrollmenu">
+                &nbsp;GAMES:&nbsp;
                 <c:forEach items="${schedule}" var="game" varStatus="gamelist">
                     <a href='<spring:url value="/game?id=${gamelist.index}"/>'>
                             ${game.homeTeam} vs ${game.visitorTeam}

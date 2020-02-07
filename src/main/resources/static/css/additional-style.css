@@ -8,6 +8,7 @@ div.scrollmenu {
     background-color: #1d428a;
     overflow: auto;
     white-space: nowrap;
+    color: white;
 }
 
 div.scrollmenu a {

@@ -41,7 +41,7 @@ public class ScheduleDto {
     @JsonProperty("meta")
     private void unpackNestedMeta(Map<String, Integer> meta) {
         Integer totalCount = meta.get("total_count");
-        this.played = totalCount != 0;
+        this.played = totalCount > 0;
     }
 
     public boolean wasPlayed() {

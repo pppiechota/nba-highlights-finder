@@ -18,8 +18,21 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="mt-5">Pick a team:</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h3 class="mt-5">East Conference</h3>
             <ul style="list-style-type:none;">
-                <c:forEach items="${teams}" var="team">
+                <c:forEach items="${eastConference}" var="team">
+                    <li><a href='<spring:url value="/teams/${team.id}"/>'>${team.fullName}</a></li>
+                </c:forEach>
+            </ul>
+        </div>
+        <div class="col text-center">
+            <h3 class="mt-5">West Conference</h3>
+            <ul style="list-style-type:none;">
+                <c:forEach items="${westConference}" var="team">
                     <li><a href='<spring:url value="/teams/${team.id}"/>'>${team.fullName}</a></li>
                 </c:forEach>
             </ul>

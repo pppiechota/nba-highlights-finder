@@ -69,7 +69,11 @@ public class HomeController {
     }
 
     @RequestMapping("/teams")
-    public String getTeamList() {
+    public String getTeamList(Model model) {
+        List<Team> west = teamRepo.findAllByConference("West");
+        List<Team> east = teamRepo.findAllByConference("East");
+        model.addAttribute("westConference",west);
+        model.addAttribute("eastConference",east);
         return "teams";
     }
 

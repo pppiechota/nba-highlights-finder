@@ -25,11 +25,9 @@ public class BallApiService {
     public List<Game> getGamesFromDate(LocalDate date) {
         String queryUrl = API_URL_DAY + date + "&end_date=" + date;
 
-        RestTemplate restTemplate = new RestTemplate();
-        ScheduleDto scheduleDto = restTemplate.getForEntity(queryUrl, ScheduleDto.class)
-                .getBody();
-
+        ScheduleDto scheduleDto = getScheduleDto(queryUrl);
         assert scheduleDto != null : "Returned JSON is null";
+
         return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
     }
 
@@ -43,13 +41,26 @@ public class BallApiService {
         LocalDate lastDay = LocalDate.now().minusDays(1);
         String queryUrl = API_URL_TEAM + team.getId() + "&start_date=" + firstDay + "&end_date=" + lastDay;
 
-        RestTemplate restTemplate = new RestTemplate();
-        ScheduleDto scheduleDto = restTemplate.getForEntity(queryUrl, ScheduleDto.class)
-                .getBody();
-
+        ScheduleDto scheduleDto = getScheduleDto(queryUrl);
         assert scheduleDto != null : "Returned JSON is null";
 
         scheduleDto.getGames().sort((g1, g2)-> g2.getDate().compareTo(g1.getDate()));
         return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
+    }
+
+    public List<Game> getTeamGamesFromPeriod(Team team, LocalDate firstDay, LocalDate lastDay) {
+        String queryUrl = API_URL_TEAM + team.getId() + "&start_date=" + firstDay.minusDays(1) + "&end_date=" + lastDay.minusDays(1);
+
+        ScheduleDto scheduleDto = getScheduleDto(queryUrl);
+        assert scheduleDto != null : "Returned JSON is null";
+
+        scheduleDto.getGames().sort((g1, g2)-> g2.getDate().compareTo(g1.getDate()));
+        return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
+    }
+
+    private ScheduleDto getScheduleDto(String queryUrl) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForEntity(queryUrl, ScheduleDto.class)
+                .getBody();
     }
 }

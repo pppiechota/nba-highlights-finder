@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="mt-5">Highlights from ${date}:</h1>
-            <ul style="list-style-type:none;">
+            <ul class="nostyle">
                 <c:forEach items="${dateSchedule}" var="game" varStatus="dateSchedule">
                     <li><a href='<spring:url value="/calendar/game?id=${dateSchedule.index}"/>'>
                             ${game.homeTeam} vs ${game.visitorTeam} [final score: ${game.homeTeamScore}:${game.visitorTeamScore}]

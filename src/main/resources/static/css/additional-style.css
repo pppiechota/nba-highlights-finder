@@ -53,3 +53,7 @@ div.about {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+ul.nostyle {
+    list-style-type: none;
+}

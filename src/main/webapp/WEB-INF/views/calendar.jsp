@@ -16,9 +16,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-
             <p class="lead">Search for highlights from another day</p>
-            <form action="/calendar" method="post">
+            <form action='<spring:url value="/calendar"/>' method="post">
                 <label for="anotherDay">Date:</label>
                 <input type="date" id="anotherDay" name="another" max="${maxDate}" min="${minDate}">
                 <input type="submit" value="Choose">

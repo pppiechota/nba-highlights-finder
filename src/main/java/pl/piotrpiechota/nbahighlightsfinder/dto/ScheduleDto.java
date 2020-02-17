@@ -20,7 +20,6 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ScheduleDto {
 
-    private final ZoneId zoneUS = ZoneId.of("US/Central");
     private boolean played;
     private List<Game> games = new ArrayList<>();
 
@@ -54,15 +53,7 @@ public class ScheduleDto {
         return played;
     }
 
-    public void setPlayed(boolean played) {
-        this.played = played;
-    }
-
     public List<Game> getGames() {
         return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

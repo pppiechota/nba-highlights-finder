@@ -12,13 +12,12 @@
 </head>
 <body>
 <jsp:include page="navMenu.jsp"/>
-<jsp:include page="resultsScrollbar.jsp"/>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="mt-5">Highlights for ${team.fullName}</h1>
-            <ul style="list-style-type:none;">
+            <ul class="nostyle">
                 <c:forEach items="${teamGamesList}" var="game" varStatus="teamSchedule">
                     <li><a href='<spring:url value="/teams/game?id=${teamSchedule.index}"/>'>
                             ${game.homeTeam} vs ${game.visitorTeam} (${game.date}) [final score: ${game.homeTeamScore}:${game.visitorTeamScore}]

@@ -14,6 +14,7 @@ import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class HomeController {
     private final YoutubeService youtubeService;
     private final BallApiService ballApiService;
     private final TeamRepository teamRepo;
+    private final int YESTERDAY = 1;
 
     public HomeController(YoutubeService youtubeService, BallApiService ballApiService, TeamRepository teamRepo) {
         this.youtubeService = youtubeService;
@@ -36,7 +38,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String getHomepage(HttpServletRequest request, Model model) {
-        LocalDate lastDay = LocalDate.now().minusDays(1);
+        String lastDay = LocalDate.now().minusDays(YESTERDAY).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
         List<Game> scheduledGames = ballApiService.getLastNightsGames();
 

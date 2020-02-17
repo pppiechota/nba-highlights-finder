@@ -1,13 +1,12 @@
 package pl.piotrpiechota.nbahighlightsfinder.entity;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 public class Game {
 
     private String homeTeam;
     private String visitorTeam;
-    private ZonedDateTime date;
+    private Instant date;   // Because date from API comes as a timestamp, but without specified hour
     private Integer homeTeamScore;
     private Integer visitorTeamScore;
 
@@ -27,11 +26,11 @@ public class Game {
         this.visitorTeamScore = visitorTeamScore;
     }
 
-    public ZonedDateTime getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class BallApiService {
 
+    private final int YESTERDAY = 1;
     private final TeamRepository teamRepo;
     private final String API_URL_DAY = "http://www.balldontlie.io/api/v1/games?start_date=";
     private final String API_URL_TEAM = "http://www.balldontlie.io/api/v1/games?team_ids[]=";
@@ -32,24 +33,14 @@ public class BallApiService {
     }
 
     public List<Game> getLastNightsGames() {
-        LocalDate lastDay = LocalDate.now().minusDays(1);
+        LocalDate lastDay = LocalDate.now().minusDays(YESTERDAY);
         return getGamesFromDate(lastDay);
     }
 
     public List<Game> getTeamGamesFromLastMonth(Team team) {
         LocalDate firstDay = LocalDate.now().minusDays(30);
-        LocalDate lastDay = LocalDate.now().minusDays(1);
+        LocalDate lastDay = LocalDate.now().minusDays(YESTERDAY);
         String queryUrl = API_URL_TEAM + team.getId() + "&start_date=" + firstDay + "&end_date=" + lastDay;
-
-        ScheduleDto scheduleDto = getScheduleDto(queryUrl);
-        assert scheduleDto != null : "Returned JSON is null";
-
-        scheduleDto.getGames().sort((g1, g2)-> g2.getDate().compareTo(g1.getDate()));
-        return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
-    }
-
-    public List<Game> getTeamGamesFromPeriod(Team team, LocalDate firstDay, LocalDate lastDay) {
-        String queryUrl = API_URL_TEAM + team.getId() + "&start_date=" + firstDay.minusDays(1) + "&end_date=" + lastDay.minusDays(1);
 
         ScheduleDto scheduleDto = getScheduleDto(queryUrl);
         assert scheduleDto != null : "Returned JSON is null";

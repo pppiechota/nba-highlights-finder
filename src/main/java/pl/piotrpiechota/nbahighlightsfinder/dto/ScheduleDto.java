@@ -30,11 +30,7 @@ public class ScheduleDto {
         for (Map<String, Object> gameData : data) {
             Game tempGame = new Game();
 
-            Instant momentOfTheGame = Instant.parse((String) gameData.get("date"));
-            tempGame.setDate(ZonedDateTime.ofInstant(momentOfTheGame, zoneUS));
-//            tempGame.setDate(LocalDateTime
-//                    .parse((String) gameData.get("date"), DateTimeFormatter.ISO_DATE_TIME)
-//                    .toLocalDate());
+            tempGame.setDate(Instant.parse((String) gameData.get("date")));
             tempGame.setHomeTeamScore((Integer) gameData.get("home_team_score"));
             tempGame.setVisitorTeamScore(((Integer) gameData.get("visitor_team_score")));
 

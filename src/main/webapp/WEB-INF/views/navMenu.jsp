@@ -13,6 +13,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href='<spring:url value="/calendar"/>'>Pick a date</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href='<spring:url value="/teams"/>'>Pick a team</a>
                 </li>
                 <li class="nav-item">

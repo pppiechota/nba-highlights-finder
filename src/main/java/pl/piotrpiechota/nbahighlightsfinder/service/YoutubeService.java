@@ -73,11 +73,7 @@ public class YoutubeService {
     private boolean dateIsRight(DateTime googleDate, Game game){
         String dateToParse = googleDate.toString();
         Instant publishedAt = Instant.parse(dateToParse);
-        return publishedAt.isAfter(game.getDate().toInstant()) /*|| publishedAt.equals(game.getDate().toInstant())*/;
-
-//        String dateToParse = googleDate.toString().substring(0,10);
-//        LocalDate publishedAt = LocalDate.parse(dateToParse);
-//        return publishedAt.isAfter(game.getDate().minusDays(2));
+        return publishedAt.isAfter(game.getDate()) /*|| publishedAt.equals(game.getDate())*/;
     }
 
     private boolean timeIsRight(Duration videoDuration){

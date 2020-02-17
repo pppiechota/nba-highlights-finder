@@ -27,6 +27,8 @@ public class ScheduleDto {
             tempGame.setDate(LocalDateTime
                     .parse((String) gameData.get("date"), DateTimeFormatter.ISO_DATE_TIME)
                     .toLocalDate());
+            tempGame.setHomeTeamScore((Integer) gameData.get("home_team_score"));
+            tempGame.setVisitorTeamScore(((Integer) gameData.get("visitor_team_score")));
 
             Map<String, Object> homeTeamMap = (Map<String, Object>) gameData.get("home_team");
             tempGame.setHomeTeam((String) homeTeamMap.get("name"));

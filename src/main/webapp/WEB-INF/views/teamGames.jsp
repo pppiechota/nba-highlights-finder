@@ -21,7 +21,7 @@
             <ul style="list-style-type:none;">
                 <c:forEach items="${teamGamesList}" var="game" varStatus="teamSchedule">
                     <li><a href='<spring:url value="/teams/game?id=${teamSchedule.index}"/>'>
-                            ${game.homeTeam} vs ${game.visitorTeam} (${game.date})
+                            ${game.homeTeam} vs ${game.visitorTeam} (${game.date}) [final score: ${game.homeTeamScore}:${game.visitorTeamScore}]
                     </a></li>
                 </c:forEach>
             </ul>

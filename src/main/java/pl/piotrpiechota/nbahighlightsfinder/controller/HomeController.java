@@ -3,11 +3,8 @@ package pl.piotrpiechota.nbahighlightsfinder.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Team;
 import pl.piotrpiechota.nbahighlightsfinder.repository.TeamRepository;
@@ -17,13 +14,10 @@ import pl.piotrpiechota.nbahighlightsfinder.service.YoutubeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-//@SessionScope
 public class HomeController {
     private final YoutubeService youtubeService;
     private final BallApiService ballApiService;

@@ -13,6 +13,7 @@ import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
@@ -21,7 +22,7 @@ import java.util.Properties;
 public class YoutubeService {
 
     private static final String PROPERTIES_FILENAME = "youtube.properties";
-    private static final long NUMBER_OF_VIDEOS_RETURNED = 10;
+    private static final long NUMBER_OF_VIDEOS_RETURNED = 12;
     private static final Duration LOWER_LIMIT = Duration.parse("PT08M00S");
     private static final Duration UPPER_LIMIT = Duration.parse("PT15M0S");
 
@@ -33,7 +34,7 @@ public class YoutubeService {
             }).setApplicationName("nba-highlights-finder").build();
 
             String apiKey = getProperties().getProperty("youtube.apikey");
-            String queryTerm = game.getHomeTeam() + " " + game.getVisitorTeam()/*+" "+game.getDate().toString()*/;
+            String queryTerm = game.getHomeTeam() + " " + game.getVisitorTeam() + "highlights";
 
             YouTube.Search.List search = youtube.search()
                     .list("id,snippet")
@@ -71,6 +72,8 @@ public class YoutubeService {
     }
 
     private boolean dateIsRight(DateTime googleDate, Game game){
+        String dateToParse2 = googleDate.toString();
+        Instant instant = Instant.parse(dateToParse2);
         String dateToParse = googleDate.toString().substring(0,10);
         LocalDate publishedAt = LocalDate.parse(dateToParse);
         return publishedAt.isAfter(game.getDate().minusDays(2));

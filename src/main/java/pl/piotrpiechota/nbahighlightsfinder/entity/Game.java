@@ -7,6 +7,24 @@ public class Game {
     private String homeTeam;
     private String visitorTeam;
     private LocalDate date;
+    private Integer homeTeamScore;
+    private Integer visitorTeamScore;
+
+    public Integer getHomeTeamScore() {
+        return homeTeamScore;
+    }
+
+    public void setHomeTeamScore(Integer homeTeamScore) {
+        this.homeTeamScore = homeTeamScore;
+    }
+
+    public Integer getVisitorTeamScore() {
+        return visitorTeamScore;
+    }
+
+    public void setVisitorTeamScore(Integer visitorTeamScore) {
+        this.visitorTeamScore = visitorTeamScore;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -16,7 +34,7 @@ public class Game {
         this.date = date;
     }
 
-        public String getHomeTeam() {
+    public String getHomeTeam() {
         return homeTeam;
     }
 

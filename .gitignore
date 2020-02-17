@@ -7,6 +7,9 @@ target/
 mvnw
 mvnw.cmd
 
+application.properties
+youtube.properties
+
 ### STS ###
 .apt_generated
 .classpath

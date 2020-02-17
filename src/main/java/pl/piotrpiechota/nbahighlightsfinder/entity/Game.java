@@ -1,12 +1,13 @@
 package pl.piotrpiechota.nbahighlightsfinder.entity;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 public class Game {
 
     private String homeTeam;
     private String visitorTeam;
-    private LocalDate date;
+    private ZonedDateTime date;
     private Integer homeTeamScore;
     private Integer visitorTeamScore;
 
@@ -26,11 +27,11 @@ public class Game {
         this.visitorTeamScore = visitorTeamScore;
     }
 
-    public LocalDate getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(ZonedDateTime date) {
         this.date = date;
     }
 

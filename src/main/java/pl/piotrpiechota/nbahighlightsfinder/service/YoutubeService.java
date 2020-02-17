@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
 
@@ -58,7 +57,7 @@ public class YoutubeService {
                 Duration duration = Duration.parse(videoResponse.getItems().get(0).getContentDetails().getDuration());
                 DateTime dateG = videoResponse.getItems().get(0).getSnippet().getPublishedAt();
 
-                if (timeIsRight(duration) && dateIsRight(dateG,game)){
+                if (timeIsRight(duration) && dateIsRight(dateG, game)){
                     requestedVideoId = videoId;
                     break;
                 }
@@ -72,11 +71,13 @@ public class YoutubeService {
     }
 
     private boolean dateIsRight(DateTime googleDate, Game game){
-        String dateToParse2 = googleDate.toString();
-        Instant instant = Instant.parse(dateToParse2);
-        String dateToParse = googleDate.toString().substring(0,10);
-        LocalDate publishedAt = LocalDate.parse(dateToParse);
-        return publishedAt.isAfter(game.getDate().minusDays(2));
+        String dateToParse = googleDate.toString();
+        Instant publishedAt = Instant.parse(dateToParse);
+        return publishedAt.isAfter(game.getDate().toInstant()) /*|| publishedAt.equals(game.getDate().toInstant())*/;
+
+//        String dateToParse = googleDate.toString().substring(0,10);
+//        LocalDate publishedAt = LocalDate.parse(dateToParse);
+//        return publishedAt.isAfter(game.getDate().minusDays(2));
     }
 
     private boolean timeIsRight(Duration videoDuration){

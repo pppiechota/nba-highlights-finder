@@ -18,13 +18,17 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <div class="about">
-                <h1 class="mt-5">Are you a hard-working, gently-sleeping at night polish NBA fan,
-                    looking for spoiler-free highlights of your favourite's team recent games?</h1>
+                <h1 class="mt-5">What is it?</h1>
             </div>
             <p class="lead">.</p>
             <p class="lead">.</p>
             <p class="lead">.</p>
-            <p class="lead">This site is for you.</p>
+            <p class="lead">League pass ain't cheap, but you can (almost) always count on the good people on youtube uploading game highlights as soon as they ends.
+                This site will check the schedule and search YT to give you highlights from the game you want, without spoiling it.
+                If the search doesn't seem to work properly or you have any ideas about improving the site, contact me at example@example.pl</p>
+            <p>
+                &copy; Piotr Piechota, 2020
+            </p>
         </div>
     </div>
 </div>

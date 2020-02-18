@@ -7,8 +7,11 @@ target/
 mvnw
 mvnw.cmd
 
-application.properties
-youtube.properties
+
+/src/main/resources/application.properties
+/src/main/resources/youtube.properties
+/resources/application.properties
+/resources/youtube.properties
 
 ### STS ###
 .apt_generated

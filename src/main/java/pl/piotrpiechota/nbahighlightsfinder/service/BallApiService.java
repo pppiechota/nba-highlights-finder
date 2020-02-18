@@ -49,6 +49,17 @@ public class BallApiService {
         return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
     }
 
+//    public List<Game> getTeamGamesFromMonth(Team team) {
+//        LocalDate lastDay = LocalDate.now().minusDays(YESTERDAY);
+//        String queryUrl = API_URL_TEAM + team.getId() + "&start_date=" + firstDay + "&end_date=" + lastDay;
+//
+//        ScheduleDto scheduleDto = getScheduleDto(queryUrl);
+//        assert scheduleDto != null : "Returned JSON is null";
+//
+//        scheduleDto.getGames().sort((g1, g2)-> g2.getDate().compareTo(g1.getDate()));
+//        return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
+//    }
+
     private ScheduleDto getScheduleDto(String queryUrl) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForEntity(queryUrl, ScheduleDto.class)

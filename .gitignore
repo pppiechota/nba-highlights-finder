@@ -10,8 +10,8 @@ mvnw.cmd
 
 /src/main/resources/application.properties
 /src/main/resources/youtube.properties
-/resources/application.properties
-/resources/youtube.properties
+application.properties
+youtube.properties
 
 ### STS ###
 .apt_generated

@@ -20,15 +20,17 @@
             <ul class="nostyle">
                 <c:forEach items="${dateSchedule}" var="game" varStatus="dateSchedule">
                     <li><a href='<spring:url value="/calendar/game?id=${dateSchedule.index}"/>'>
-                            ${game.homeTeam} vs ${game.visitorTeam} [final score: ${game.homeTeamScore}:${game.visitorTeamScore}]
-                    </a></li>
+                            ${game.homeTeam} vs ${game.visitorTeam}</a>
+                        [final score: <span class="game">${game.homeTeamScore}:${game.visitorTeamScore}</span> <span class="showhide">SHOW</span>]
+                    </li>
                 </c:forEach>
             </ul>
         </div>
     </div>
 </div>
 
-<script src="vendor/jquery/jquery.slim.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src='<spring:url value="/vendor/jquery/jquery.slim.min.js"/>'></script>
+<script src='<spring:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js"/>'></script>
+<script src='<spring:url value="/js/app.js"/>'></script>
 </body>
 </html>

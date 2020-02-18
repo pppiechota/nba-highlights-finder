@@ -29,7 +29,8 @@
     </div>
 </div>
 
-<script src="vendor/jquery/jquery.slim.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src='<spring:url value="/vendor/jquery/jquery.slim.min.js"/>'></script>
+<script src='<spring:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js"/>'></script>
+<script src='<spring:url value="/js/app.js"/>'></script>
 </body>
 </html>

@@ -44,7 +44,7 @@ public class DateController {
         List<Game> scheduledGames = ballApiService.getGamesFromDate(pickedDate);
 
         request.getSession().setAttribute("dateSchedule", scheduledGames);
-        model.addAttribute("date", pickedDate);
+        model.addAttribute("date", pickedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         return "calendarGames";
     }
 

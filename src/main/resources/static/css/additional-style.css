@@ -57,3 +57,8 @@ div.about {
 ul.nostyle {
     list-style-type: none;
 }
+
+span.game {
+    display: none;
+    color: #1d428a;
+}

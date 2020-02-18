@@ -45,27 +45,11 @@ public class TeamController {
         List<Team> east = teamRepo.findAllByConference("East");
         model.addAttribute("westConference", west);
         model.addAttribute("eastConference", east);
-
-
         return "teams";
     }
 
-    @RequestMapping(value = "/teams/{id}", method = RequestMethod.POST)
-    public String getTeamGamesFromMonth(@PathVariable Integer id, @RequestParam String month,
-                                        Model model, HttpServletRequest request){
-        Team team = teamRepo.findById(id)
-                .orElse(new Team());
-
-        List<Game> teamGamesFromLastMonth = ballApiService.getTeamGamesFromLastMonth(team);
-        model.addAttribute("teamGamesList", teamGamesFromLastMonth);
-        request.getSession().setAttribute("scheduleTeam", teamGamesFromLastMonth);
-        model.addAttribute("team", team);
-
-        return "teamMonth";
-    }
-
     @RequestMapping("/teams/{id}")
-    public String getTeamGames(@PathVariable Integer id, Model model, HttpServletRequest request) {
+    public String getTeamGames(@PathVariable Integer id, Model model) {
         Team team = teamRepo.findById(id)
                 .orElse(new Team());
 
@@ -73,12 +57,21 @@ public class TeamController {
         String seasonStart = "2019-10";
         model.addAttribute("maxDate", lastDay);
         model.addAttribute("minDate", seasonStart);
-
-        List<Game> teamGamesFromLastMonth = ballApiService.getTeamGamesFromLastMonth(team);
-        model.addAttribute("teamGamesList", teamGamesFromLastMonth);
-        request.getSession().setAttribute("scheduleTeam", teamGamesFromLastMonth);
         model.addAttribute("team", team);
         return "teamGames";
+    }
+
+    @RequestMapping(value = "/teams/{id}", method = RequestMethod.POST)
+    public String getTeamGamesFromMonth(@PathVariable Integer id, @RequestParam String month,
+                                        Model model, HttpServletRequest request) {
+        Team team = teamRepo.findById(id)
+                .orElse(new Team());
+
+        List<Game> teamGamesFromMonth = ballApiService.getTeamGamesFromMonth(team, month);
+        model.addAttribute("teamGamesList", teamGamesFromMonth);
+        request.getSession().setAttribute("scheduleTeam", teamGamesFromMonth);
+        model.addAttribute("team", team);
+        return "teamMonth";
     }
 
     @RequestMapping("/teams/game")

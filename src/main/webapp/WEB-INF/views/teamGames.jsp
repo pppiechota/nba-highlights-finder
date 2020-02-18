@@ -24,16 +24,6 @@
                        max="${maxDate}" min="${minDate}" value="2020-02">
                 <input type="submit" value="OK">
             </form>
-
-
-<%--            <ul class="nostyle">--%>
-<%--                <c:forEach items="${teamGamesList}" var="game" varStatus="teamSchedule">--%>
-<%--                    <li><a href='<spring:url value="/teams/game?id=${teamSchedule.index}"/>'>--%>
-<%--                            ${game.homeTeam} vs ${game.visitorTeam} (${game.date})</a>--%>
-<%--                        [final score: <span class="game">${game.homeTeamScore}:${game.visitorTeamScore}</span> <span class="showhide">SHOW</span>]--%>
-<%--                    </li>--%>
-<%--                </c:forEach>--%>
-<%--            </ul>--%>
         </div>
     </div>
 </div>

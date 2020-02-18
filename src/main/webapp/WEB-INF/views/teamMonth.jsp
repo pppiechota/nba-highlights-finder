@@ -18,15 +18,15 @@
         <div class="col-lg-12 text-center">
             <h1 class="mt-5">Highlights for ${team.fullName}</h1>
 
-
-                        <ul class="nostyle">
-                            <c:forEach items="${teamGamesList}" var="game" varStatus="teamSchedule">
-                                <li><a href='<spring:url value="/teams/game?id=${teamSchedule.index}"/>'>
-                                        ${game.homeTeam} vs ${game.visitorTeam} (${game.date})</a>
-                                    [final score: <span class="game">${game.homeTeamScore}:${game.visitorTeamScore}</span> <span class="showhide">SHOW</span>]
-                                </li>
-                            </c:forEach>
-                        </ul>
+            <ul class="nostyle">
+                <c:forEach items="${teamGamesList}" var="game" varStatus="teamSchedule">
+                    <li><a href='<spring:url value="/teams/game?id=${teamSchedule.index}"/>'>
+                            ${game.homeTeam} vs ${game.visitorTeam} (${game.date})</a>
+                        [final score: <span class="game">${game.homeTeamScore}:${game.visitorTeamScore}</span> <span
+                                class="showhide">SHOW</span>]
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </div>

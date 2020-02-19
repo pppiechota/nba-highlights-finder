@@ -2,16 +2,9 @@ package pl.piotrpiechota.nbahighlightsfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.stereotype.Component;
 import pl.piotrpiechota.nbahighlightsfinder.entity.Game;
-import pl.piotrpiechota.nbahighlightsfinder.entity.Team;
-import pl.piotrpiechota.nbahighlightsfinder.repository.TeamRepository;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

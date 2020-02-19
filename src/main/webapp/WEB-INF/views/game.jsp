@@ -25,6 +25,11 @@
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
+            <c:if test="${empty video}">
+                <div>
+                    <span>Sorry, unable to find requested video!</span>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>

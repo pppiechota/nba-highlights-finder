@@ -85,7 +85,7 @@ public class TeamController {
         }
 
         Game clickedGame = scheduledGames.get(id);
-        String videoId = youtubeService.executeSearch(clickedGame);
+        List<String> videoId = youtubeService.executeSearch(clickedGame);
 
         model.addAttribute("video", videoId);
         model.addAttribute("game", clickedGame);

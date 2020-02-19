@@ -21,7 +21,7 @@
             <p>${game.date}</p>
             <div class="player">
                 <div class="videoWrapper">
-                    <iframe src="https://www.youtube.com/embed/${video}" frameborder="0"
+                    <iframe src="https://www.youtube.com/embed/${video.get(0)}" frameborder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>

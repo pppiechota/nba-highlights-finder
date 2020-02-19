@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -27,8 +28,8 @@ public class YoutubeService {
     private static final Duration LOWER_LIMIT = Duration.parse("PT08M00S");
     private static final Duration UPPER_LIMIT = Duration.parse("PT15M0S");
 
-    public String executeSearch(Game game) {
-        String requestedVideoId = null;
+    public List<String> executeSearch(Game game) {
+        List<String> requestedVideoIds = new ArrayList<>();
         try {
             YouTube youtube = new YouTube.Builder(YoutubeUtil.HTTP_TRANSPORT, YoutubeUtil.JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {}
@@ -65,8 +66,8 @@ public class YoutubeService {
                 DateTime googleDate = videoResponse.getSnippet().getPublishedAt();
 
                 if (timeIsRight(duration) && dateIsRight(googleDate, game.getDate())){
-                    requestedVideoId = videoId;
-                    break;
+                    requestedVideoIds.add(videoId);
+//                    break;
                 }
             }
 
@@ -74,7 +75,7 @@ public class YoutubeService {
             e.printStackTrace();
         }
 
-        return requestedVideoId;
+        return requestedVideoIds;
     }
 
 //    private String getVideoId(){

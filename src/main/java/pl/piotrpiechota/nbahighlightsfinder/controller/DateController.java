@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 public class DateController {
-
+    private final String SEASONSTART = "2019-10-22";
     private final int YESTERDAY = 1;
     private final YoutubeService youtubeService;
     private final BallApiService ballApiService;
@@ -29,16 +29,16 @@ public class DateController {
     }
 
     @RequestMapping("/calendar")
-    public String getCalendar(Model model) {
+    public String getDate(Model model) {
         String lastDay = LocalDate.now().minusDays(YESTERDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String seasonStart = "2019-10-22";
+
         model.addAttribute("maxDate", lastDay);
-        model.addAttribute("minDate", seasonStart);
+        model.addAttribute("minDate", SEASONSTART);
         return "calendar";
     }
 
     @RequestMapping(value = "/calendar", method = RequestMethod.POST)
-    public String getCalendarWithSchedule(@RequestParam String another, Model model, HttpServletRequest request) {
+    public String getScheduleFromDate(@RequestParam String another, Model model, HttpServletRequest request) {
         LocalDate pickedDate = LocalDate.parse(another);
 
         List<Game> scheduledGames = ballApiService.getGamesFromDate(pickedDate);
@@ -49,16 +49,17 @@ public class DateController {
     }
 
     @RequestMapping("/calendar/game")
-    public String getTeamList(@RequestParam Integer id, HttpSession session, Model model) {
-        List<Game> schedule;
+    public String getGameFromDate(@RequestParam Integer id, HttpSession session, Model model) {
+        List<Game> scheduledGames;
         if (session.getAttribute("dateSchedule") == null) {
-            schedule = new ArrayList<>();
+            scheduledGames = new ArrayList<>();
         } else {
-            schedule = (List<Game>) session.getAttribute("dateSchedule");
+            scheduledGames = (List<Game>) session.getAttribute("dateSchedule");
         }
 
-        Game clickedGame = schedule.get(id);
+        Game clickedGame = scheduledGames.get(id);
         String videoId = youtubeService.executeSearch(clickedGame);
+
         model.addAttribute("video", videoId);
         model.addAttribute("game", clickedGame);
         return "game";

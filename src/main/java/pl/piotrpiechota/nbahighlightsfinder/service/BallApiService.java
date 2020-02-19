@@ -27,7 +27,7 @@ public class BallApiService {
         return scheduleDto.wasPlayed() ? scheduleDto.getGames() : new ArrayList<>();
     }
 
-    public List<Game> getLastNightsGames() {
+    public List<Game> getGamesFromLastNight() {
         LocalDate lastDay = LocalDate.now().minusDays(YESTERDAY);
         return getGamesFromDate(lastDay);
     }

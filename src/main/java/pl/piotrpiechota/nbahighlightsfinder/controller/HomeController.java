@@ -40,7 +40,7 @@ public class HomeController {
     public String getHomepage(HttpServletRequest request, Model model) {
         String lastDay = LocalDate.now().minusDays(YESTERDAY).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
-        List<Game> scheduledGames = ballApiService.getLastNightsGames();
+        List<Game> scheduledGames = ballApiService.getGamesFromLastNight();
 
         request.getSession().setAttribute("schedule", scheduledGames);
         model.addAttribute("date", lastDay);
@@ -49,14 +49,14 @@ public class HomeController {
 
     @RequestMapping("/game")
     public String getGame(@RequestParam Integer id, HttpSession session, Model model) {
-        List<Game> schedule;
+        List<Game> scheduledGames;
         if (session.getAttribute("schedule") == null) {
-            schedule = new ArrayList<>();
+            scheduledGames = new ArrayList<>();
         } else {
-            schedule = (List<Game>) session.getAttribute("schedule");
+            scheduledGames = (List<Game>) session.getAttribute("schedule");
         }
 
-        Game clickedGame = schedule.get(id);
+        Game clickedGame = scheduledGames.get(id);
         String videoId = youtubeService.executeSearch(clickedGame);
 
         model.addAttribute("video", videoId);

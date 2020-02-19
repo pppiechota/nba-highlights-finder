@@ -29,7 +29,9 @@ public class YoutubeService {
     private static final Duration UPPER_LIMIT = Duration.parse("PT15M0S");
 
     public List<String> executeSearch(Game game) {
+
         List<String> requestedVideoIds = new ArrayList<>();
+
         try {
             YouTube youtube = new YouTube.Builder(YoutubeUtil.HTTP_TRANSPORT, YoutubeUtil.JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {}
@@ -37,50 +39,44 @@ public class YoutubeService {
 
             String queryTerm = game.getHomeTeam() + " " + game.getVisitorTeam() + " highlights -1st";
 
-            YouTube.Search.List search = youtube.search()
+            YouTube.Search.List searchList = youtube.search()
                     .list("id,snippet")
                     .setKey(getApiKey())
                     .setQ(queryTerm)
                     .setType("video")
                     .setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
-            YouTube.Videos.List video = youtube.videos()
+            YouTube.Videos.List videoList = youtube.videos()
                     .list("contentDetails,snippet");
 
-            List<SearchResult> searchResultList = search
+            List<SearchResult> searchResults = searchList
                     .execute()
                     .getItems();
 
-            for (SearchResult searchResult : searchResultList) {
-                // Retrieve ID for a particular video
+            for (SearchResult searchResult : searchResults) {
+                // Retrieve video ID
                 String videoId = searchResult.getId().getVideoId();
 
-                // Retrieve additional info for that video
-                Video videoResponse = video.setKey(getApiKey())
+                // Retrieve video object to get additional data
+                Video video = videoList.setKey(getApiKey())
                         .setId(videoId)
                         .execute()
                         .getItems()
                         .get(ONLY_ITEM);
 
-                Duration duration = Duration.parse(videoResponse.getContentDetails().getDuration());
-                DateTime googleDate = videoResponse.getSnippet().getPublishedAt();
+                Duration duration = Duration.parse(video.getContentDetails().getDuration());
+                DateTime googleDate = video.getSnippet().getPublishedAt();
 
                 if (timeIsRight(duration) && dateIsRight(googleDate, game.getDate())){
                     requestedVideoIds.add(videoId);
-//                    break;
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return requestedVideoIds;
     }
-
-//    private String getVideoId(){
-//
-//    }
 
     private boolean dateIsRight(DateTime googleDate, Instant gameDate){
         String dateToParse = googleDate.toString();

@@ -6,6 +6,7 @@ Small application made as a graduation project for Java: Web Developer course by
 * utilize knowledge from the course and learn some new technologies/classes/interfaces
 
 Following world's best known basketball league can be tricky if you are living in Poland - time difference, little coverage in media, etc. If you want to have a look at last night's games, it is hard not to see the results while checking out the schedule. This is my take on the problem.
+
 Application connects to restful API [balldontlie.io](https://www.balldontlie.io/), and retrieves requested schedule without spoiling it for the user. Then it connects to YouTube DataAPI, performs a search, applies some filtering and return video IDs for a particular game.   
 
 ## Installation

@@ -16,7 +16,7 @@ nba-highlights-finder is written with Spring Boot. To run:
 2. add your Google ApiKey in youtube.properties
 3. add your username and password for database in application.properties
 
-Application uses simple database for NBA teams, it can be built from an attached sql script.
+Application uses simple database to map NBA teams, it can be built from an attached sql script.
 
 ## Technologies
 
